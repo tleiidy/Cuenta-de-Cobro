@@ -90,7 +90,8 @@ public class Obtener implements Serializable {
         return persona;
     }
     /**
-     * metodo set que modifica el objeto persona
+     * 
+     * @param persona 
      */
     public void setPersona(Persona persona) {
         this.persona = persona;
