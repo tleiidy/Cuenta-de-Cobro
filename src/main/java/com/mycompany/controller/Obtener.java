@@ -14,8 +14,7 @@ import javax.faces.bean.RequestScoped;
 
 /**
  *
- * @author Gerard Amortegui
- * @author Brayan Diaz
+ * @author Leidy Torres
  */
 @ManagedBean
 @RequestScoped
@@ -25,13 +24,15 @@ import javax.faces.bean.RequestScoped;
 public class Obtener implements Serializable {
     /**variable que almacena el nombre*/
     private String nombre;
+    private String apellido;
+    private String[] profesion;
+    private String genero;
+    private String[] idiomas;
+    private String ubicacion;
+    private int dias;
     /**variable que almacena el sueldo*/
     private float sueldo;
-    /**variable que almacena el numero de dias*/
-    private int dias;
-    /**vector que almacena los idiomas*/
-    private String[] idiomas;
- 
+     
     public Obtener() {
         
     }
@@ -83,6 +84,41 @@ public class Obtener implements Serializable {
     public void setIdiomas(String[] idiomas) {
         this.idiomas = idiomas;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String[] getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String[] profesion) {
+        this.profesion = profesion;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
+    
+    
     /**
      * metodo get que obtiene el objeto persona
      */
@@ -99,6 +135,6 @@ public class Obtener implements Serializable {
     /**
      * Creacion del objeto persona en memoria
      */
-    Persona persona = new Persona(nombre,sueldo,dias,idiomas);
+    Persona persona = new Persona(nombre,apellido,profesion,genero,idiomas,ubicacion,dias,sueldo);
     
 }

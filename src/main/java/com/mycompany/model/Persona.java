@@ -7,8 +7,7 @@ package com.mycompany.model;
 
 /**
  *
- * @author Gerard Amortegui
- * @author Brayan Diaz
+ * @author Leidy Torres
  */
 
 /**
@@ -17,25 +16,26 @@ package com.mycompany.model;
 public class Persona {
     /**variable que almacena el nombre*/
     private String nombre;
-    /**variable que almacenar el sueldo*/
-    private float sueldo;
-    /**variable que almacena el numero de dias trabajados por la persona*/
+    private String apellido;
+    private String []profesion;
+    private String genero;
+    private String []idiomas;
+    private String ubicacion;
     private int dias;
-    /**vector que almacena los idiomas utilizados por la persona*/
-    private String[] idiomas;
-    /**
-     * Constructor de la clase persona que recibe los siguientes parametros
-     * @param nombre
-     * @param sueldo
-     * @param dias
-     * @param idiomas 
-     */
-    public Persona(String nombre, float sueldo, int dias, String[] idiomas) {
+    private float sueldo;
+
+    public Persona(String nombre, String apellido, String[] profesion, String genero, String[] idiomas, String ubicacion, int dias, float sueldo) {
         this.nombre = nombre;
-        this.sueldo = sueldo;
-        this.dias = dias;
+        this.apellido = apellido;
+        this.profesion = profesion;
+        this.genero = genero;
         this.idiomas = idiomas;
+        this.ubicacion = ubicacion;
+        this.dias = dias;
+        this.sueldo = sueldo;
     }
+    
+    
     /**
      * metodo get que obtiene la variable nombre
      */
@@ -84,6 +84,41 @@ public class Persona {
     public void setIdiomas(String[] idiomas) {
         this.idiomas = idiomas;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String[] getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String[] profesion) {
+        this.profesion = profesion;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
+    
+    
     /**
      * Metodo que calcula el sueldo total en base a los datos ingresados por las persona mediante los siguiente parametros 
      * @param sueldo
@@ -91,9 +126,19 @@ public class Persona {
      * @param idiomas
      * @return 
      */
-    public float sueldoTotal(float sueldo, int dias, String[] idiomas){
+    public float sueldoTotal(float sueldo, int dias, String[] idiomas, String[]profesion, String ubicacion){
     
         float resultado = 0;
+        if(profesion.equals("Ingeniero")){
+                resultado = (sueldo + 2000000) * dias;
+            }else if (profesion.equals("Tecnologo")){
+                resultado = (sueldo + 1500000) * dias;
+            }else if (profesion.equals("Tecnico")){
+                resultado = (sueldo + 1000000) * dias;
+            }else{
+                resultado = (sueldo + 850000) * dias;
+        }
+        
         if(idiomas.length == 0){
             resultado = sueldo * dias;
         }
@@ -118,4 +163,43 @@ public class Persona {
         
         return resultado;
     }
+
+    public float sueldoTotal(String[]profesion, String[]idiomas,String ubicacion,int dias, float sueldo) {
+        float sueldoTotal=0;
+       if(profesion.equals("Ingeniero")){
+                sueldoTotal = (sueldo + 2000000) * dias;
+            }else if (profesion.equals("Tecnologo")){
+                sueldoTotal = (sueldo + 1500000) * dias;
+            }else if (profesion.equals("Tecnico")){
+                sueldoTotal = (sueldo + 1000000) * dias;
+            }else{
+                sueldoTotal = (sueldo + 850000) * dias;
+            }
+            if(idiomas.length == 0){
+            sueldoTotal = sueldoTotal;
+            }
+            else{
+                //sueldoTotal = sueldo*dias;
+                for(int i=0 ; i<idiomas.length ; i++){
+                    if(idiomas[i].equals("ingles")){
+                        sueldoTotal = sueldoTotal + 250000;
+                    }
+                    else if(idiomas[i].equals("frances")){
+                        sueldoTotal = sueldoTotal + 330000;
+                    }
+                    else if(idiomas[i].equals("aleman")){
+                        sueldoTotal = sueldoTotal + 500000;
+                    }
+                }
+            }
+            if (ubicacion.equals("Afueras")){
+                sueldoTotal = sueldoTotal + 80000;
+            }else {
+                sueldoTotal = sueldoTotal;
+            }
+        return sueldoTotal;
+    }
+    
 }
+
+

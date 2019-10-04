@@ -13,8 +13,7 @@ import javax.faces.bean.*;
 
 /**
  *
- * @author Gerard Amortegui
- * @author Brayan Diaz
+ * @author Leidy Torres
  */
 @ManagedBean
 @RequestScoped
@@ -50,7 +49,21 @@ public class Mostrar implements Serializable {
      * @return 
      */
     public String resultado(){
-        return "Querido usuario "+datos.getNombre()+" segun su sueldo que es: "+datos.getSueldo()+" y segun los dias trabajados que son: "+ datos.getDias()+" y los idiomas que escogio su nomina es: "+datos.persona.sueldoTotal(datos.getSueldo(), datos.getDias(), datos.getIdiomas());
+        //return "Querido usuario "+datos.getNombre()+" segun su sueldo que es: "+datos.getSueldo()+" y segun los dias trabajados que son: "+ datos.getDias()+" y los idiomas que escogio su nomina es: "+datos.persona.sueldoTotal(datos.getProfesion(), datos.getIdiomas(), datos.getUbicacion(), datos.getDias(), datos.getSueldo());
+        if(datos.getGenero().equals("Femenino")){
+            return "Señora "+datos.getNombre()+" "+datos.getApellido()+
+                    " \npor su profesion "+ datos.getProfesion()[0]+" y su idioma "+
+                    datos.getIdiomas()[0]+" ,su ubicación en "+datos.getUbicacion()+
+                    " y dias trabajados "+datos.getDias()+" su cuenta de cobro es: "+datos.persona.sueldoTotal(datos.getProfesion(), datos.getIdiomas(), datos.getUbicacion(), datos.getDias(), datos.getSueldo());
+        }else if(datos.getGenero().equals("Masculino")){
+            return "Señor "+datos.getNombre()+" "+datos.getApellido()+" por su profesion "+ datos.getProfesion()[0]
+                    +" y su idioma "+datos.getIdiomas()[0]+" ,su ubicación en "+datos.getUbicacion()
+                    +" y dias trabajados "+datos.getDias()+" su cuenta de cobro es: "+datos.persona.sueldoTotal(datos.getProfesion(), datos.getIdiomas(), datos.getUbicacion(), datos.getDias(), datos.getSueldo());
+        }else {
+            return "Señor usuario "+datos.getNombre()+" "+datos.getApellido()+" por su profesion "+datos.getProfesion()[0]
+                    +" y su idioma "+datos.getIdiomas()[0]+" ,su ubicación en "+datos.getUbicacion()
+                    +" y dias trabajados "+datos.getDias()+" su cuenta de cobro es: "+datos.persona.sueldoTotal(datos.getProfesion(), datos.getIdiomas(), datos.getUbicacion(), datos.getDias(), datos.getSueldo());
+        }
     }
     
 }
